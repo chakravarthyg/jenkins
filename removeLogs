@@ -1,0 +1,18 @@
+#!/bin/bash
+for j in $( eval dzdo echo /var /aflac );
+    do
+		for i in $( eval echo  '*.log' '*.gz' '*.old');
+            do
+               echo
+ dzdo find $j -name $i -mtime +6 -type f -printf '%s/1000\n' | paste -sd+ - | bc
+				echo Kilo Bytes of space freed in $j folder with file extension $i
+               echo
+ dzdo find $j -name $i -mtime +6 -type f
+               echo
+ dzdo find $j -name $i -mtime +6 -type f -delete
+            done
+    done
+echo
+ dzdo docker rm $(dzdo docker ps -q -f status=exited) 
+echo
+ dzdo docker rmi $(dzdo docker images -q)
