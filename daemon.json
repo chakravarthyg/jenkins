@@ -1,0 +1,8 @@
+/etc/docker/daemon.json
+
+{
+  "storage-driver": "devicemapper",
+"labels": [ "awsinstance=awsnode" ],
+"storage-opts": [ "dm.thinpooldev=/dev/mapper/VolGroup01-thinpool" ],
+"graph": "/aflac/app/docker_data"
+}
